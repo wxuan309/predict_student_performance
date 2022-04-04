@@ -15,9 +15,8 @@
 import os
 
 # import stuff for our web server
-from flask import Flask, flash, request, redirect, url_for, render_template, session
-from utils import get_base_url, and_syntax
-import regex as re
+from flask import Flask, request, redirect, url_for, render_template, session
+from utils import get_base_url
 # import stuff for our models
 from aitextgen import aitextgen
 
