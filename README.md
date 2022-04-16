@@ -45,6 +45,15 @@ or
 
 `docker exec -it omni /bin/bash` for an interactive bash terminal (this option only works if the container is running and not stuck in a restart loop)
 
+### Common Issues
+
+`$'\r': command not found` when attempting to start docker container
+
+this is caused by the the `entrypoint.sh` script somehow having CLRF line endings instead of LF line endings.
+
+to fix this run
+
+`sed -i 's/\r$//' entrypoint.sh`
 
 ### File Structure
 The files/directories which you will need to edit are **bolded**, and the files you **may** need to edit are *italicized*.
@@ -52,6 +61,7 @@ The files/directories which you will need to edit are **bolded**, and the files 
 **DO NOT TOUCH OTHER FILES. THIS MAY RESULT IN YOUR PROJECT BEING UNABLE TO RUN**
 
 - .gitignore
+- config.py
 - Dockerfile
 - READMD.md
 - entrypoint.sh
@@ -97,6 +107,7 @@ Contains the static images, CSS, & JS files used by the flask app for the webpag
 Contains all necessary information to load in your model to aitextgen. Place your config.json, pytorch_model.bin, and aitextgen.tokenizer.json(if applicable) files in this folder. You are going to want to comment out the snippet `ai = aitextgen(model_folder="model/", tokenizer_file="model/aitextgen.tokenizer.json", to_gpu=False)` in main once you have done this.
 
 ### Files used for deployment ###
+`config.py`
 `Dockerfile`
 `entrypoint.sh`
 `nginx_host`
