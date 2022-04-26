@@ -1,4 +1,4 @@
-# Universal Project Scaffold
+# Exercise for Flask NLP!
 A scaffold for deploying dockerized flask applications.
 
 If you have any questions, feel free to open an issue on [Github](https://github.com/organization-x/omni/issues).
