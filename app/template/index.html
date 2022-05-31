@@ -62,16 +62,16 @@
                     </div>
                     <div class="col-lg-8">
                         <h3>Exploration of data: Grade Distribution</h3>
-                        <p class="lead">Scatterplots clearly demonstrate to us more positive and negative trends in our data. Most surprising to us is that as agricultural goes to zero, GDP becomes exponentially higher.</p>
+                        <p class="lead">Based on the bar graph of grade distribution for terms 1, 2, and 3, we can see that most students obtain a score of around 10 out of 20 points. It presents a bell curve of high value centering around 10 and less moving on both sides.</p>
                         <iframe width="700" height="700" title="Bar graph of grade distribution" src="{{url_for('static', filename='GradeDistribution_bar.html')}}"></iframe> <br><br>
                     </div>
                     <div class="col-lg-8">
                         <h3>Data Cleaning</h3>
-                        <p class="lead">Scatterplots clearly demonstrate to us more positive and negative trends in our data. Most surprising to us is that as agricultural goes to zero, GDP becomes exponentially higher.</p>
+                        <p class="lead">To prepare the dataset for classification, we converted G1, G2, and G3 into binary responses by transforming grade points higher than 10 as 1 and those less than 10 as 0. 1 represents pass, and 0 represents fail. However, the three response variables are slightly imbalanced after transformation, with roughly 70% of data points belonging to the class ‘pass’. Therefore, we will conduct a stratified split when splitting the dataset into training and testing data. In addition, we convert categorical data into dummy variables. </p>
                     </div>
                     <div class="col-lg-8">
                         <h3>Exploration of data: Grade Distributions</h3>
-                        <p class="lead">We isolated the above features that we saw as most important and turned them into their own correlation table, so that we can see how these crucial features affect wealth.</p>
+                        <p class="lead">After converting G1, G2, and G3 into binary responses, we can see based on the pie chart that roughly 70% of data points belong to the class ‘pass’. Also, there is an increasing trend of more students passing the class as moving from term 1, term 2, to term 3. </p>
                         <iframe width="800" height="800" title="Crucial Features Hetmap" src="{{url_for('static', filename='GradeDistribution_pie.html')}}"></iframe>  
                         <br>
                     </div>
@@ -93,10 +93,8 @@
 
                     <div class="col-lg-8">
                         <h2>Linear Regression: Results</h2>
-                        <iframe width="500" height="500" title="Logistic Regression Confusion Matrix1" src="{{url_for('static', filename='lr1.png')}}"></iframe>  
-                        <iframe width="500" height="500" title="Logistic Regression Confusion Matrix2" src="{{url_for('static', filename='lr2.png')}}"></iframe>  
-                        <iframe width="500" height="500" title="Logistic Regression Confusion Matrix3" src="{{url_for('static', filename='lr3.png')}}"></iframe>  
-
+                        <iframe width="300" height="300" title="Logistic Regression accuracy" src="{{url_for('static', filename='acc_lr.png')}}"></iframe>  
+                        <iframe width="300" height="300" title="Logistic Regression f1 score" src="{{url_for('static', filename='f1_lr.png')}}"></iframe>  
                     </div>
                     <div class="col-lg-8">
                         <h2>Random Forest: Explanation</h2>
@@ -105,9 +103,8 @@
 
                     <div class="col-lg-8">
                         <h2>Random Forest: Results</h2>
-                        <iframe width="500" height="500" title="Random Forest Confusion Matrix1" src="{{url_for('static', filename='rf1.png')}}"></iframe>  
-                        <iframe width="500" height="500" title="Random Forest Confusion Matrix2" src="{{url_for('static', filename='rf2.png')}}"></iframe>  
-                        <iframe width="500" height="500" title="Random Forest Confusion Matrix3" src="{{url_for('static', filename='rf3.png')}}"></iframe>
+                        <iframe width="300" height="300" title="Random Forest accuracy" src="{{url_for('static', filename='acc_rfc.png')}}"></iframe>  
+                        <iframe width="300" height="300" title="Random Forest f1 score" src="{{url_for('static', filename='f1_rfc.png')}}"></iframe>   
                     </div>
                     <div class="col-lg-8">
                         <h2>XGBoost: Explanation</h2>
@@ -115,9 +112,8 @@
                     </div>
                     <div class="col-lg-8">
                         <h2>XGBoost: Results</h2>
-                        <iframe width="500" height="500" title="XGBoost Confusion Matrix1" src="{{url_for('static', filename='xgb1.png')}}"></iframe>  
-                        <iframe width="500" height="500" title="XGBoost Confusion Matrix2" src="{{url_for('static', filename='xgb2.png')}}"></iframe>  
-                        <iframe width="500" height="500" title="XGBoost Confusion Matrix3" src="{{url_for('static', filename='xgb3.png')}}"></iframe>
+                        <iframe width="300" height="300" title="XGBoost accuracy" src="{{url_for('static', filename='acc_xgb.png')}}"></iframe>  
+                        <iframe width="300" height="300" title="XGBoost f1 score" src="{{url_for('static', filename='f1_xgb.png')}}"></iframe>   
                     </div>
                 </div>
             </div>
