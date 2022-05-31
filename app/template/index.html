@@ -57,8 +57,10 @@
                     <div class="col-lg-8">
                         <h3>Data Overview</h3>
                         <p class="lead">The <a href="https://archive.ics.uci.edu/ml/datasets/Student+Performance">datasets</a> are retrieved from UCI machine learning repository, containing 1044 observations and 32 columns in total. The combined two datasets are students’ performance in Mathematics and Portuguese language. It includes demographic, personal, social, and parental features that may play a role in their achievement. Each observations represent a student and includes both numeric and categorical data. It has no missing values and three response variables: G1, G2, and G3. It represents a student’s performance for term 1, term 2, and term 3. </p>
-                    <iframe width="900" height="900" title="Numeric Variables" src="{{url_for('static', filename='numeric.png')}}"></iframe> <br>
-                    <iframe width="900" height="900" title="Categorical Vairables" src="{{url_for('static', filename='categorical.png')}}"></iframe> <br>
+                    <p class="lead">Numeric Variables</p>
+                    <iframe width="900" height="600" title="Numeric Variables" src="{{url_for('static', filename='numeric.png')}}"></iframe> <br>
+                    <p class="lead">Categorical Variables</p>
+                    <iframe width="900" height="1200" title="Categorical Vairables" src="{{url_for('static', filename='categorical.png')}}"></iframe> <br>
                     </div>
                     <div class="col-lg-8">
                         <h3>Exploration of data: Grade Distribution</h3>
@@ -72,7 +74,7 @@
                     <div class="col-lg-8">
                         <h3>Exploration of data: Grade Distributions</h3>
                         <p class="lead">After converting G1, G2, and G3 into binary responses, we can see based on the pie chart that roughly 70% of data points belong to the class ‘pass’. Also, there is an increasing trend of more students passing the class as moving from term 1, term 2, to term 3. </p>
-                        <iframe width="800" height="800" title="Crucial Features Hetmap" src="{{url_for('static', filename='GradeDistribution_pie.html')}}"></iframe>  
+                        <iframe width="600" height="600" title="Pie graph of grade distribution" src="{{url_for('static', filename='GradeDistribution_pie.html')}}"></iframe>  
                         <br>
                     </div>
                 </div>
@@ -90,30 +92,65 @@
                         <h2>Logistic Regression: Explanation</h2>
                         <p class="lead">Logistic Regression is one of the simplest and basic machine learning models for binary classification with great interpretability. It correlates all features with the response variable through a linear relationship. To this end, it is common that it serves as a baseline model for most machine learning projects.</p>
                     </div>
-
                     <div class="col-lg-8">
                         <h2>Linear Regression: Results</h2>
-                        <iframe width="300" height="300" title="Logistic Regression accuracy" src="{{url_for('static', filename='acc_lr.png')}}"></iframe>  
-                        <iframe width="300" height="300" title="Logistic Regression f1 score" src="{{url_for('static', filename='f1_lr.png')}}"></iframe>  
+                        <iframe width="600" height="600" title="Logistic Regression accuracy and f1 score" src="{{url_for('static', filename='lr.html')}}"></iframe>  
                     </div>
                     <div class="col-lg-8">
                         <h2>Random Forest: Explanation</h2>
                         <p class="lead">Random Forest is an ensemble method that combines and implements the concepts of bagging and Decision Tree, where different bootstrap samples from the training data are fitted with Decision Trees. At each node, random feature subsets are derived from deciding upon the optimal split to reduce variance and improve accuracy. </p>
+                        <p class="lead">Model 1 parameters</p>
+                        <ul>
+                            <li>criterion: entropy</li>
+                            <li>max_depth: 8</li>
+                            <li>max_features: sqrt</li>
+                            <li>n_estimators: 200</li>
+                        </ul>
+                        <p class="lead">Model 2 parameters</p>
+                        <ul>
+                            <li>criterion: gini</li>
+                            <li>max_depth: 7</li>
+                            <li>max_features: auto</li>
+                            <li>n_estimators: 200</li>
+                        </ul>
+                        <p class="lead">Model 3 parameters</p>
+                        <ul>
+                            <li>criterion: entropy</li>
+                            <li>max_depth: 6</li>
+                            <li>max_features: auto</li>
+                            <li>n_estimators: 500</li>
+                        </ul>
                     </div>
 
                     <div class="col-lg-8">
                         <h2>Random Forest: Results</h2>
-                        <iframe width="300" height="300" title="Random Forest accuracy" src="{{url_for('static', filename='acc_rfc.png')}}"></iframe>  
-                        <iframe width="300" height="300" title="Random Forest f1 score" src="{{url_for('static', filename='f1_rfc.png')}}"></iframe>   
+                        <iframe width="600" height="600" title="Random Forest accuracy and f1 score" src="{{url_for('static', filename='rfc.html')}}"></iframe>  
                     </div>
                     <div class="col-lg-8">
                         <h2>XGBoost: Explanation</h2>
                         <p class="lead">Xgboost is also an ensemble that combines the outputs from individual trees. It uses boosting by combining weak learners sequentially so that each new tree corrects the errors of the previous one, and this process continues until no further improvements can be made.</p>
+                        <p class="lead">Model 1 parameters</p>
+                        <ul>
+                            <li>learning_rate: 0.001</li>
+                            <li>max_depth: 4</li>
+                            <li>n_estimators: 2000</li>
+                        </ul>
+                        <p class="lead">Model 2 parameters</p>
+                        <ul>
+                            <li>learning_rate: 0.01</li>
+                            <li>max_depth: </li>
+                            <li>n_estimators: 500</li>
+                        </ul>
+                        <p class="lead">Model 3 parameters</p>
+                        <ul>
+                            <li>learning_rate: 0.01</li>
+                            <li>max_depth: 4</li>
+                            <li>n_estimators: 2000</li>
+                        </ul>
                     </div>
                     <div class="col-lg-8">
                         <h2>XGBoost: Results</h2>
-                        <iframe width="300" height="300" title="XGBoost accuracy" src="{{url_for('static', filename='acc_xgb.png')}}"></iframe>  
-                        <iframe width="300" height="300" title="XGBoost f1 score" src="{{url_for('static', filename='f1_xgb.png')}}"></iframe>   
+                        <iframe width="600" height="600" title="XGBoost accuracy and f1 score" src="{{url_for('static', filename='xgb.html')}}"></iframe>  
                     </div>
                 </div>
             </div>
