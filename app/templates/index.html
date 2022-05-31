@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Predicting GDP per capita for countries using several factors</title>
+        <title>Predicting students' performance using demographic, personal, social, and parental features</title>
         <link rel="icon" type="image/x-icon" href="{{url_for('static', filename='assets/favicon.ico')}}" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{url_for('static', filename='css/styles.css')}}" rel="stylesheet" />
@@ -14,7 +14,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
             <div class="container px-4">
-                <a class="navbar-brand" href="#page-top">Country GDP predictor</a>
+                <a class="navbar-brand" href="#page-top">Student's performance predictor</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
@@ -30,8 +30,8 @@
         <!-- Header-->
         <header class="bg-primary bg-gradient text-white">
             <div class="container px-4 text-center">
-                <h1 class="fw-bolder">Predicting GDP per capita for countries using several factors</h1>
-                <p class="lead">A data science project by AI Camp students</p>
+                <h1 class="fw-bolder">Predicting students' performance using demographic, personal, social, and parental features</h1>
+                <p class="lead">Emma Chen - AI Camp DS Crash Course</p>
                 <a class="btn btn-lg btn-light" href="#about">See our work below</a>
             </div>
         </header>
@@ -42,7 +42,7 @@
                     <div class="col-lg-8">
                         <h2>What does the project do?
                         </h2>
-                        <p class="lead">In our dataset, there is information on population height, literacy, infant mortality, etc... that correlate with each other in interesting ways. Our goal will be to predict the wealth of nations, which will be measured in GDP per capita. Looking at same characteristics of the dataset, the GDP per capita ranges from $500 to $55,100 and has a standard deviation of $9834</p>
+                        <p class="lead">Due to the advancement of technology and availability of data, it makes possible for educators and policymakers to understand students’ behavior, keep track of their progress, and further support their learning experiences. To this end, we aim to explore the factors that affect students’ academic performance and further predict their achievement. </p>
                     </div>
                 </div>
             </div>
@@ -55,19 +55,24 @@
                     <h1 id="top-level-heading">Exploration</h1><br/>
                     </div>
                     <div class="col-lg-8">
-                        <h3>Exploration of data: Correlation table heatmap</h3>
-                        <p class="lead">First, we created a correlation table to see how different features correlated with the wealth of nations. Some surprising results were that the number of phones per hundred people and male height in cm were highly correlated with GDP per capita. Meanwhile, birthrate and infant mortality were highly negatively correlated</p>
-                    <iframe width="900" height="900" title="Correlation Table of Features" src="{{url_for('static', filename='all_correlation_map.html')}}"></iframe> <br>
+                        <h3>Data Overview</h3>
+                        <p class="lead">The <a href="https://archive.ics.uci.edu/ml/datasets/Student+Performance">datasets</a> are retrieved from UCI machine learning repository, containing 1044 observations and 32 columns in total. The combined two datasets are students’ performance in Mathematics and Portuguese language. It includes demographic, personal, social, and parental features that may play a role in their achievement. Each observations represent a student and includes both numeric and categorical data. It has no missing values and three response variables: G1, G2, and G3. It represents a student’s performance for term 1, term 2, and term 3. </p>
+                    <iframe width="900" height="900" title="Numeric Variables" src="{{url_for('static', filename='numeric.png')}}"></iframe> <br>
+                    <iframe width="900" height="900" title="Categorical Vairables" src="{{url_for('static', filename='categorical.png')}}"></iframe> <br>
                     </div>
                     <div class="col-lg-8">
-                        <h3>Exploration of data: Scatterplots</h3>
+                        <h3>Exploration of data: Grade Distribution</h3>
                         <p class="lead">Scatterplots clearly demonstrate to us more positive and negative trends in our data. Most surprising to us is that as agricultural goes to zero, GDP becomes exponentially higher.</p>
-                        <iframe width="700" height="700" title="Scatterplots of features in relation to GDP" src="{{url_for('static', filename='GDP scatterplots.html')}}"></iframe> <br><br>
+                        <iframe width="700" height="700" title="Bar graph of grade distribution" src="{{url_for('static', filename='GradeDistribution_bar.html')}}"></iframe> <br><br>
                     </div>
                     <div class="col-lg-8">
-                        <h3>Visualization of crucial features</h3>
+                        <h3>Data Cleaning</h3>
+                        <p class="lead">Scatterplots clearly demonstrate to us more positive and negative trends in our data. Most surprising to us is that as agricultural goes to zero, GDP becomes exponentially higher.</p>
+                    </div>
+                    <div class="col-lg-8">
+                        <h3>Exploration of data: Grade Distributions</h3>
                         <p class="lead">We isolated the above features that we saw as most important and turned them into their own correlation table, so that we can see how these crucial features affect wealth.</p>
-                        <iframe width="800" height="800" title="Crucial Features Hetmap" src="{{url_for('static', filename='crucial_features_heatmap.html')}}"></iframe>  
+                        <iframe width="800" height="800" title="Crucial Features Hetmap" src="{{url_for('static', filename='GradeDistribution_pie.html')}}"></iframe>  
                         <br>
                     </div>
                 </div>
@@ -79,41 +84,40 @@
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
                         <h1>Machine Learning</h1></br>
+                        <p class="lead">We will be using Logistic Regression as the baseline model and following random forest and XGBoost in predicting students’ performance for term 1, term 2, and term3. Along with a Grid search to tune the hyperparameters, parameter details for each model will be provided below. As for evaluating the performance of models, we will be using the confusion matrix.</p>
                     </div>
                     <div class="col-lg-8">
-                        <h2>Linear Regression: Explanation</h2>
-                        <p class="lead">First, we want to try a baseline linear regression. Linear regression assumes that all features are have a linear relation with GDP per capita, and we can fit a line of best fit to predict future values</p>
-                        <img src="{{url_for('static', filename='images/LinearExplanation.png')}}" class="page-image" />
+                        <h2>Logistic Regression: Explanation</h2>
+                        <p class="lead">Logistic Regression is one of the simplest and basic machine learning models for binary classification with great interpretability. It correlates all features with the response variable through a linear relationship. To this end, it is common that it serves as a baseline model for most machine learning projects.</p>
                     </div>
 
                     <div class="col-lg-8">
                         <h2>Linear Regression: Results</h2>
-                        <p class="lead">Here we have a confusion matrix with the results of the linear regression applied on our testing dataset. A confusion matrix for a classification problem tells us the number of correct and incorrect predictions for every class (for example wealthy). For example, the model may have classified 10 countries with average GDP as average and classified 2 countries with average GDP incorrectly, shown in the below confusion matrix. Linear regression performed exceptionally well on countries with average GDP.</p>
-                        <iframe width="500" height="500" title="Linear Regression Confusion Matrix" src="{{url_for('static', filename='LinearRegressionCF.html')}}"></iframe>  
-                        <p class="lead">By calculating the total correct examples over all examples classified, we get an average accuracy of around 58%. Mean absolute error, or the average difference between predicted and actual GDP per capita, was $3299</p>
+                        <iframe width="500" height="500" title="Logistic Regression Confusion Matrix1" src="{{url_for('static', filename='lr1.png')}}"></iframe>  
+                        <iframe width="500" height="500" title="Logistic Regression Confusion Matrix2" src="{{url_for('static', filename='lr2.png')}}"></iframe>  
+                        <iframe width="500" height="500" title="Logistic Regression Confusion Matrix3" src="{{url_for('static', filename='lr3.png')}}"></iframe>  
+
                     </div>
                     <div class="col-lg-8">
-                        <h2>Neural Networks: Explanation</h2>
-                        <p class="lead">Neural networks are one of the most powerful machine learning approaches for data with complicated patterns, but are more prone to overfitting to simple data.</p>
-                        <img src="{{url_for('static', filename='images/nn_explanation.png')}}" class="page-image" width="500"/>
+                        <h2>Random Forest: Explanation</h2>
+                        <p class="lead">Random Forest is an ensemble method that combines and implements the concepts of bagging and Decision Tree, where different bootstrap samples from the training data are fitted with Decision Trees. At each node, random feature subsets are derived from deciding upon the optimal split to reduce variance and improve accuracy. </p>
                     </div>
 
                     <div class="col-lg-8">
-                        <h2>Neutral Networks: Results</h2>
-                        <p class="lead">Looking at the confusion matrix below, the neural network performed much better on wealthy and very wealthy nations.</p>
-                        <iframe width="500" height="500" title="Neural Network Confusion Matrix" src="{{url_for('static', filename='NeuralNetworkCF_matrix.html')}}"></iframe>
-                        <p class="lead">For total accuracy, the NN performed at 64.4% accuracy in classification. Mean absolute error is $2311</p>
+                        <h2>Random Forest: Results</h2>
+                        <iframe width="500" height="500" title="Random Forest Confusion Matrix1" src="{{url_for('static', filename='rf1.png')}}"></iframe>  
+                        <iframe width="500" height="500" title="Random Forest Confusion Matrix2" src="{{url_for('static', filename='rf2.png')}}"></iframe>  
+                        <iframe width="500" height="500" title="Random Forest Confusion Matrix3" src="{{url_for('static', filename='rf3.png')}}"></iframe>
                     </div>
                     <div class="col-lg-8">
-                        <h2>K Nearest Neighbors: Explanation</h2>
-                        <p class="lead">K Nearest Neighbors looks at data points in the testing set and infers the classification based on similarity to other points of the same class in the training set.</p>
-                        <img src="{{url_for('static', filename='images/knn_explanation.jpeg')}}" class="page-image" width="500"/>
+                        <h2>XGBoost: Explanation</h2>
+                        <p class="lead">Xgboost is also an ensemble that combines the outputs from individual trees. It uses boosting by combining weak learners sequentially so that each new tree corrects the errors of the previous one, and this process continues until no further improvements can be made.</p>
                     </div>
                     <div class="col-lg-8">
-                        <h2>K Nearest Neighbors: Results</h2>
-                        <p class="lead">Looking at our confusion matrix below, K Nearest Neighbors performed well on very wealthy and ver poor nations.</p>
-                        <iframe width="500" height="500" title="KNN Confusion Matrix" src="{{url_for('static', filename='KNN_CF_matrix.html')}}"></iframe>  
-                        <p class="lead">For total accuracy, the NN performed at 64.4% accuracy in classification. Mean absolute error is $2311</p>
+                        <h2>XGBoost: Results</h2>
+                        <iframe width="500" height="500" title="XGBoost Confusion Matrix1" src="{{url_for('static', filename='xgb1.png')}}"></iframe>  
+                        <iframe width="500" height="500" title="XGBoost Confusion Matrix2" src="{{url_for('static', filename='xgb2.png')}}"></iframe>  
+                        <iframe width="500" height="500" title="XGBoost Confusion Matrix3" src="{{url_for('static', filename='xgb3.png')}}"></iframe>
                     </div>
                 </div>
             </div>
@@ -126,11 +130,11 @@
                     </div>
                     <div class="col-lg-8">
 
-                        <p class="lead">In conclusion, neural networks clearly performed the best on our dataset for predicting GDP per capita. Positively correlated features like height and phone usage along with negatively correlated features like birthrate and agriculture helped us achieve these results. </p>
+                        <p class="lead">Surprisingly, logistic regression as a baseline model is the best model compared to random forest and XGBoost. It has an overall higher accuracy and f1 score in predicting the three response variables. Also, as each model’s performance enhances from terms 1, 2, to 3, it is reasonable to assume that a student’s score in previous terms is an important indicator of future performances. There is a correlation between students’ performance between term 1, term 2, and term3.</p>
 
                         <h3>So what?</h3>
                             
-                        <p class="lead">So what is the significance of our project? Because we know which features are most correlated with a higher GDP country, we can identify both the factors that lead to countries with higher monetary value and also predict and then invest in countries with a high likelihood of future growth. </p>
+                        <p class="lead">As we gained an understanding that students’ performance in past terms serves as an indicator of future performances, it is crucial for educators to keep track and support those who fall behind. </p>
                     </div>
                 </div>
             </div>
